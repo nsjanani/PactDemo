@@ -1,0 +1,38 @@
+{
+    "provider": {
+        "name": "ProductCatalogue"
+    },
+    "consumer": {
+        "name": "ProductDashboard"
+    },
+    "interactions": [
+        {
+            "description": "Create a new product in Product Catalogue",
+            "request": {
+                "method": "GET",
+                "path": "/products/64b2a6a4-07e4-4dbd-9d66-74bbb911fd94"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "id": "64b2a6a4-07e4-4dbd-9d66-74bbb911fd94",
+                    "name": "go",
+                    "price": 23.23,
+                    "stock": 2
+                }
+            },
+            "providerState": "There is a product with id - 64b2a6a4-07e4-4dbd-9d66-74bbb911fd94 exist in Product Catalogue"
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "2.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.3.6"
+        }
+    }
+}

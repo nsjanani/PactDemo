@@ -1,0 +1,12 @@
+#Intellij Files
+.gradle
+.idea
+build/
+out/
+#gradle.properties
+
+#Class Files
+*.class
+*.iml
+
+*.html

@@ -1,0 +1,45 @@
+{
+    "provider": {
+        "name": "ProductCatalogue"
+    },
+    "consumer": {
+        "name": "CreateProduct"
+    },
+    "interactions": [
+        {
+            "description": "Create a new product in Product Catalogue",
+            "request": {
+                "method": "POST",
+                "path": "/products",
+                "query": "name=macbook&price=3319.45&stock=3"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "id": "e8cda07e-849f-49c2-94d6-aaa5c4ab7fcd",
+                    "name": "macbook",
+                    "price": 3319.45,
+                    "stock": 3
+                },
+                "matchingRules": {
+                    "$.body.id": {
+                        "match": "regex",
+                        "regex": "[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}"
+                    }
+                }
+            },
+            "providerState": "There may be some products already available in Product Catalogue"
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "2.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.3.6"
+        }
+    }
+}

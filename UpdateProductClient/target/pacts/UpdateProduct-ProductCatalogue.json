@@ -1,0 +1,39 @@
+{
+    "provider": {
+        "name": "ProductCatalogue"
+    },
+    "consumer": {
+        "name": "UpdateProduct"
+    },
+    "interactions": [
+        {
+            "description": "Update a product in Product Catalogue",
+            "request": {
+                "method": "PUT",
+                "path": "/products/64b2a6a4-07e4-4dbd-9d66-74bbb911fd94",
+                "query": "name=go1&price=23.23&stock=3"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "id": "64b2a6a4-07e4-4dbd-9d66-74bbb911fd94",
+                    "name": "go1",
+                    "price": 23.23,
+                    "stock": 3
+                }
+            },
+            "providerState": "There is a product with id - 64b2a6a4-07e4-4dbd-9d66-74bbb911fd94 exist in Product Catalogue"
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "2.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.3.6"
+        }
+    }
+}

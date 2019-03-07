@@ -1,0 +1,70 @@
+group 'com.product'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'au.com.dius.pact'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'au.com.dius:pact-jvm-provider-gradle_2.11:3.3.6'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.sparkjava:spark-core:2.2'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.22'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.0'
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    testCompile("org.spockframework:spock-core:1.0-groovy-2.4") {
+        exclude group: "org.codehaus.groovy"
+    }
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+}
+
+task('startTheApp') {
+
+}
+
+task('killTheApp') {
+
+}
+
+pact {
+    serviceProviders {
+        ProductCatalogue {
+            startProviderTask = startTheApp
+            terminateProviderTask = killTheApp
+            protocol = 'http'
+            host = 'localhost'
+            port = 4567
+            path = '/'
+
+            stateChangeTeardown = true
+//            hasPactsFromPactBroker('http://localhost/')
+
+            hasPactWith 'CreateProduct', {
+                 pactFile = file('..//CreateProductClient//target//pacts//CreateProduct-ProductCatalogue.json')
+            }
+        }
+    }
+
+    reports {
+        defaultReports() // adds the standard console output
+
+        markdown // report in markdown format
+        json // report in json format
+    }
+}
+
+
